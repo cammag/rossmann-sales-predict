@@ -1,4 +1,5 @@
 # Rossmann stores sales prediction
+
 ![rossmann_image](https://miro.medium.com/max/1400/0*IpUXpwNleNMgpPFr.png)
 Rossmann is a company that operates over 3000 drug stores in Europe. Rossmann store managers are tasked with predicting their sales up to 6 weeks forward.
 In this project, I've collected a large dataset from kaggle that includes sales registers from Rossmann. The dataset is available at https://www.kaggle.com/competitions/rossmann-store-sales/data. I did a model that can predict the drug stores sales
@@ -73,5 +74,21 @@ It was used boruta as method and a RandomForestRegressor to determinate the best
 - store, promo, store_type, assortment, competition_distance, competition_open_since_month, competition_open_since_year, promo2, promo2_since_week,
 promo2_since_year, competition_time_month, promo_time_week, day_of_week_sin, day_of_week_cos, month_sin, month_cos, day_sin, day_cos, week_of_year_sin, week_of_year_cos
 ## Machine Learning Modeling
-5 diffente models were trained, and their performance were evaluated by Mean Absolute Error, Mean Absolute Percentage Error and Root Mean Squared Error.
+5 diffente models were trained, and their performance was evaluated by Mean Absolute Error, Mean Absolute Percentage Error and Root Mean Squared Error.
+
 ![Models Performance](/images/performance_models.png)
+
+### Cross Validation
+It's important to see how's the behavior of the models with different parts of the dataset. For that, it was
+used a Cross Validation method to train and validate the models in diferente parts and give us an idea of the real performance of each one.
+
+![Cross Validation](/images/models_performance_cross_validation.png)
+
+### Hyperparameter Fine Tuning
+The choosen model was XGBoost regressor. To find the best hyperparameters for the choosen model, it was used the Random Search Method. Some hyperparameters were declared with some values, and the algorithm randomly chooses one value of each to train the model.
+#### Final model performance
+![Final Model](/images/final_model.png)
+
+## Telegram Bot
+Finally, the model was deployd at heroku and it was created an API to connect the prediction model to a Telegram Bot. Giving an ID of a Drug Store to the bot will return the prediction in the next 6 weeks.
+![Bot](/images/telegram-bot.png)
